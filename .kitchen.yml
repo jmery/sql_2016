@@ -1,0 +1,50 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  always_update_cookbooks: true
+  retry_on_exit_code:
+    - 35
+  max_retries: 2
+  client_rb:
+    exit_status: :enabled
+    client_fork: false
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: mwrock/Windows2012R2
+    transport:
+      name: winrm
+      elevated: true
+
+suites:
+  - name: server
+    run_list:
+      - recipe[sql_2016::default]
+      - recipe[sql_2016::sql_server]
+    verifier:
+      inspec_tests:
+        - test/smoke/sql_server
+    attributes:
+  - name: workstation
+    run_list:
+      - recipe[sql_2016::default]
+      - recipe[sql_2016::ssms]
+    verifier:
+      inspec_tests:
+        - test/smoke/ssms
+    attributes:
+  - name: full
+    run_list:
+      - recipe[sql_2016::default]
+      - recipe[sql_2016::sql_server]
+      - recipe[sql_2016::ssms]
+    verifier:
+      inspec_tests:
+        - test/smoke/sql_server
+        - test/smoke/ssms
+    attributes:

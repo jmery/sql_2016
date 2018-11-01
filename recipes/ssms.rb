@@ -23,7 +23,7 @@ package node['ssms']['package_name'] do
   options '/install /quiet /norestart'
   installer_type :custom
   timeout node['ssms']['installer_timeout']
-  only_if { File.exist?(ssms_installer) }
+#  only_if { File.exist?(ssms_installer) }
 end
 
 # Clean up installer file because it's kind of big

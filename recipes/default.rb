@@ -9,6 +9,6 @@ node.override['powershell']['installation_reboot_mode'] = 'no_reboot'
 include_recipe 'powershell::powershell5'
 
 reboot 'base_reboot' do
-  action :request_reboot
+  action :reboot_now
   only_if { reboot_pending? }
 end

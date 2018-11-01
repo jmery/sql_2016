@@ -20,6 +20,10 @@ platforms:
     transport:
       name: winrm
       elevated: true
+  - name: mwrock/Windows2016
+    transport:
+      name: winrm
+      elevated: true
 
 suites:
   - name: server

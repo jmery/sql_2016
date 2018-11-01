@@ -1,6 +1,3 @@
-# PowerShell5 Attributes
-default['powershell']['installation_reboot_mode'] = 'delayed_reboot'
-
 # SQL Server Attributes
 default['sql']['accept_eula'] = true
 default['sql']['product_key'] = nil # Force nil for eval version
